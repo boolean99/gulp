@@ -1,0 +1,38 @@
+@mixin center (
+  $horizontal-center: true,
+  $vertical-center: false,
+  $position: absolute
+  ) {
+    position: $position;
+    
+    @if(type_of($horizontal-center) != list and
+      type_of($horizontal-center) != number) {
+        
+        @if($horizontal-center == true and
+          $vertical-center == true) {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }@else {
+          @if($horizontal-center == true) {
+            left:      50%;
+            transform: translateX(-50%);
+          }
+
+          @if($vertical-center == true) {
+            top:       50%;
+            transform: translateY(-50%);
+          }
+        }
+    }@else {
+      @if(length($horizontal-center) == 1) {
+        left:        50%;
+        margin-left: -$horizontal-center / 2;
+      }@else {
+        left:        50%;
+        top:         50%;
+        margin-top:  - nth($horizontal-center, 1) / 2;
+        margin-left: - nth($horizontal-center, 2) / 2;
+      }
+    }
+}
