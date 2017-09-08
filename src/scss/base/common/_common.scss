@@ -50,6 +50,7 @@
 @mixin responsive-img() {
   > img {
 	max-width: 100%;
+    vertical-align: bottom;
     
     @extend %wide-auto;
   }

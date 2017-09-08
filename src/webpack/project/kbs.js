@@ -15,8 +15,9 @@ export function facebook(){
 }
 
 // 트위터
-export function twitter(sUrl){
+export function twitter(){
   let ogTitle = document.head.querySelector('[property="og:title"]').getAttribute('content'),
+      sUrl = doc.head.querySelector('[property="og:url"]').getAttribute('content'),
       sWindow = window.open(`http://twitter.com/intent/tweet?text=${encodeURIComponent(ogTitle)}&url=${encodeURIComponent(sUrl)}`);
   
   if (sWindow) sWindow.focus();

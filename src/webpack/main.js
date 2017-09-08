@@ -6,18 +6,22 @@ import {mirror} from './devtools/mirror';
 import {preview} from './devtools/preview';
 
 // 헬퍼 모듈 호출
-import {GConfig} from './helpers/global-config';
 import {eventTargetCatch} from './helpers/catch-event-target';
-import {delayEvent} from './helpers/delay-event';
-import {toggleBoolean} from './helpers/toggle-boolean';
-import {colorAdjust} from './helpers/color-adjust';
-import {cloneObj} from './helpers/clone-obj';
-import {index} from './helpers/index';
-import {scrollTo} from './helpers/smooth-scrolling';
-import {splitSearch} from '../../app_helpers/split-search';
-import {toggleModifier} from './helpers/toggle-modifier';
-import {makeSelectorToArray} from './helpers/make-selector-to-arry';
 import {clipboardFunc} from './helpers/clipboard-function';
+import {cloneObj} from './helpers/clone-obj';
+import {colorAdjust} from './helpers/color-adjust';
+import {delayEvent} from './helpers/delay-event';
+import {destroyEmptyItemInArry} from './helpers/destroy-empty-item-in-arry';
+import {findSpecificStringInArry} from './helpers/find-specific-string-in-arry';
+import {globalConfig} from './helpers/global-config';
+import {index} from './helpers/index';
+import {makeSelectorToArray} from './helpers/make-selector-to-arry';
+import {parents} from './helpers/parents';
+import {readingZero} from './helpers/reading-zero';
+import {scrollTop} from './helpers/smooth-scrolling';
+import {toggleBoolean} from './helpers/toggle-boolean';
+import {toggleModifier} from './helpers/toggle-modifier';
+import {splitSearch} from '../../app_helpers/split-search';
 
 // 프로젝트 모듈 호출
 import {socketFunc} from './project/socket';
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   else console.log(`DOM's been loaded`);
   
   doc.addEventListener('click', (e) => {
-    // 클릭 이벤트
+    // 클릭 이벤트 이벤트 버블링
     let clickedTarget = e.target,
         evtTargetElm = eventTargetCatch(clickedTarget).elm,
         evtTargetSelector = eventTargetCatch(clickedTarget).selector;
@@ -45,13 +49,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     switch(evtTargetSelector) {
       case 'js-copy-link' :
-//        clipboardFunc(evtTargetSelector);
-        console.log(index(evtTargetElm));
+//        console.log(index(evtTargetElm));
         break;
       default :
         return false;
     }
   }, false);
+  
+  doc.addEventListener('click', (e) => {
+    // 클릭 이벤트 이벤트 캡쳐링
+    let clickedTarget = e.target,
+        evtTargetElm = eventTargetCatch(clickedTarget).elm,
+        evtTargetSelector = eventTargetCatch(clickedTarget).selector;
+
+    switch(evtTargetSelector) {
+      case 'js-copy-link' :
+//        clipboardFunc(evtTargetSelector);
+        break;
+      default :
+        return false;
+    }
+  }, true);
   
   win.addEventListener('load', () => {
     // 윈도우 로드완료 이벤트
