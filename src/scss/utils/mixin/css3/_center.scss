@@ -5,23 +5,31 @@
   ) {
     position: $position;
     
-    @if($horizontal-center != false) {
+  @if($horizontal-center != false and
+    $vertical-center != false) {
+      top: 50%;
       left: 50%;
-      
       @if(type_of($horizontal-center) == bool) {
+        transform: translate(-50%, -50%);
+      }@else {
+        margin-left: -$horizontal-center / 2;
+        margin-top: -$vertical-center / 2;
+      }
+    }@else {
+      @if($horizontal-center == true) {
+        left: 50%;
         transform: translateX(-50%);
       }@else if(type_of($horizontal-center) == number) {
+        left: 50%;
         margin-left: -$horizontal-center / 2;
       }
-    }
-    
-    @if($vertical-center != false) {
-      top: 50%;
       
-      @if(type_of($vertical-center) == bool) {
+      @if($vertical-center == true) {
+        top: 50%;
         transform: translateY(-50%);
       }@else if(type_of($vertical-center) == number) {
-        margin-top:  -$vertical-center / 2;
+        top: 50%;
+        margin-top: -$vertical-center / 2;
       }
     }
 }

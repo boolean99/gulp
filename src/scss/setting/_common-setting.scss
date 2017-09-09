@@ -1,23 +1,23 @@
 // -------------
 // 페이지 세팅
 // -------------
-@if $skip-navi == true {
-	@include skip-navigation;
+@if ($skip-navi == true) {
+  @include skip-navigation;
 }
 
 @include multilingual;
 
-@if $css-reset == true {
-	@include box-sizing;
+@if ($css-reset == true) {
+  @include box-sizing;
 
-	body {
-	  @include vertical-rythme($global-font-size);
-	}
+  body {
+    @include vertical-rythme($global-font-size);
+  }
 // 이 두개의 Mixin은 페이지 전역에 영향을 끼치는 css를 추가하기때문에
 // css 초기화 설정 전역변수의 영향을 받도록 설정중
 }
 
-@if $orientation == false {
+@if ($orientation == false) {
   html {
     @include orientation-lock;
   }
@@ -38,4 +38,41 @@
       border-radius: 4px;
     }    
   }
+}
+
+@if ($noscript == true) {
+  noscript {
+    text-align: center;
+    box-shadow: 2px 2px 5px #ddd;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    opacity: 0.8;
+    animation: hide-noscript 2s 7s;
+    animation-fill-mode: both;
+
+    @include vertical-rythme(1.2em, 1.5em);
+    @include center(true, true);
+
+    &::after {
+      content: '5초 후에 사라집니다.';
+      display: inline-block;
+      animation: count-down 5s 2s;
+      animation-fill-mode: both;
+    }
+  }
+  
+  @keyframes hide-noscript {
+    0% {   opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  @keyframes count-down {
+    0% {   content: '5초 후에 사라집니다.'; }
+    20% {  content: '4초 후에 사라집니다.'; }
+    40% {  content: '3초 후에 사라집니다.'; }
+    60% {  content: '2초 후에 사라집니다.'; }
+    80% {  content: '1초 후에 사라집니다.'; }
+    100% { content: '0초 후에 사라집니다.'; }
+  }
+  
 }
