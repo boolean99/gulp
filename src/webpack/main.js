@@ -2,6 +2,7 @@
 import mobileDetect from 'mobile-detect';
 
 // devTools 호출
+import {devTools} from './devtools/devTools';
 import {mirror} from './devtools/mirror';
 import {preview} from './devtools/preview';
 
