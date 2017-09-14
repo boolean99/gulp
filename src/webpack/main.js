@@ -12,7 +12,7 @@ import {clipboardFunc} from './helpers/clipboard-function';
 import {cloneObj} from './helpers/clone-obj';
 import {colorAdjust} from './helpers/color-adjust';
 import {delayEvent} from './helpers/delay-event';
-import {destroyEmptyItemInArry} from './helpers/destroy-empty-item-in-arry';
+import eventInfo from './helpers/event-info';
 import {findSpecificStringInArry} from './helpers/find-specific-string-in-arry';
 import {globalConfig} from './helpers/global-config';
 import {index} from './helpers/index';
@@ -29,7 +29,7 @@ import {socketFunc} from './project/socket';
 import * as kbs from './project/kbs';
 
 // 전역변수 선언
-var socket;
+let socket;
 
 document.addEventListener('DOMContentLoaded', () => {
   // 돔 로드완료 이벤트
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let clickedTarget = e.target,
         evtTargetElm = eventTargetCatch(clickedTarget).elm,
         evtTargetSelector = eventTargetCatch(clickedTarget).selector;
-
-    console.log(evtTargetElm, evtTargetSelector);
-    
+//console.log(clickedTarget.className.split(' ').find(item => item.startsWith('js-')));
+//    console.log(evtTargetElm, evtTargetSelector);
+    console.log(eventInfo(e));
     switch(evtTargetSelector) {
       case 'js-copy-link' :
 //        console.log(index(evtTargetElm));
