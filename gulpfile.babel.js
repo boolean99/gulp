@@ -1,7 +1,7 @@
 'use strict';
 
 //*** NPM PACKAGES ***\\
-  // npm i --save express pug socket.io mobile-detect clipboard && npm i --save-dev babel-register gulp-sass-glob pug-include-glob babel-preset-es2015 babel-loader@6.4.1 gulp gulp-sourcemaps gulp-plumber merge-stream vinyl-buffer run-sequence gulp-if gulp-pug gulp-htmlmin gulp-sass gulp-postcss autoprefixer postcss-sorting gulp-cssnano gulp-group-css-media-queries gulp-webpack gulp-uglify gulp-imagemin gulp.spritesmith gulp-ttf2eot gulp-ttf2woff gulp-supervisor browser-sync path reload ansi-styles bempug
+  // npm i --save express pug socket.io mobile-detect clipboard && npm i --save-dev babel-register gulp-sass-glob pug-include-glob babel-preset-es2015 babel-polyfill babel-loader@6.4.1 gulp gulp-sourcemaps gulp-plumber merge-stream vinyl-buffer run-sequence gulp-if gulp-pug gulp-htmlmin gulp-sass gulp-postcss autoprefixer postcss-sorting gulp-cssnano gulp-group-css-media-queries gulp-webpack gulp-uglify gulp-imagemin gulp.spritesmith gulp-ttf2eot gulp-ttf2woff gulp-supervisor browser-sync path reload ansi-styles bempug
 //*** NPM PACKAGES ***\\
 
 // CONFIG

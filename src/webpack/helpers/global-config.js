@@ -1,3 +1,5 @@
-export var GConfig = {
-  imgUrl : 'world.kbs.co.kr/'
+const globalConfig = {
+  imgUrl : 'someURL...'
 };
+
+export default globalConfig;

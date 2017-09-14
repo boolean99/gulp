@@ -1,19 +1,16 @@
 (function() {
-  let mirrorIcon = document.createElement('ASIDE');
+  const DOC = document;
   
-  mirrorIcon.id = 'mirror';
-  mirrorIcon.className = 'js-mirror-hide';
+  DOC.body.insertAdjacentHTML('beforeend', `<aside id="mirror"></aside>`);
+  DOC.documentElement.dir = 'ltr';
   
-  document.body.appendChild(mirrorIcon);
-  mirrorIcon.addEventListener('click', toggleMirror);
-
-  function toggleMirror() {
-    if(mirrorIcon.className === "js-mirror-show") {
-      this.className = "js-mirror-hide";
-      document.documentElement.dir = 'ltr';
+  DOC.getElementById('mirror').addEventListener('click', function () {
+    if(DOC.documentElement.dir === 'ltr') {
+      DOC.documentElement.dir = 'rtl';
+      this.style.color = 'red';
     }else {
-      this.className = "js-mirror-show";
-      document.documentElement.dir = 'rtl';
+      DOC.documentElement.dir = 'ltr';
+      this.style.color = 'black';
     }
-  }
+  });
 })();

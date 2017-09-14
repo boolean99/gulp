@@ -1,15 +1,12 @@
-export function splitSearch(url) {
-  if(url.indexOf('?') === -1) return false;
+export default function splitSearch(url) {
+  if(!url.includes('?')) return false;
   
-  let splitArry = url.slice(1).split('?'),
-      splitedObj = {};
-  
-  for(let i = 0; i < splitArry.length; i++) {
-    let tempProperty = splitArry[i].slice(0, splitArry[i].indexOf('=')),
-        tempValue = splitArry[i].slice(splitArry[i].indexOf('=') + 1);
-
-    splitedObj[tempProperty] = tempValue;
+  let searchStringArry = url.slice(url.indexOf('?') + 1).split('&'),
+      returnObj = {};
+      
+  for(let i = 0, len = searchStringArry.length; i < len; i++) {
+    returnObj[searchStringArry[i].slice(0, searchStringArry[i].indexOf('='))] = searchStringArry[i].slice(searchStringArry[i].indexOf('=') + 1);
   }
   
-  return splitedObj;
+  return returnObj;
 }

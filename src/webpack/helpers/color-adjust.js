@@ -1,10 +1,10 @@
 // 색상 조절 객체
 
-export var colorAdjust = {
+const colorAdjust = {
   r: '',
   g: '',
   b: '',
-  rgb: function(hexCode) {
+  rgb(hexCode) {
     // hexCode라는 인자로 받은 헥사코드값을 RGB 값으로 변환해 현 객체의 r, g, b 프로퍼티에 저장한다
     let source = hexCode.slice(1);
 
@@ -12,19 +12,19 @@ export var colorAdjust = {
     this.g = parseInt(source.substring(2, 4), 16);
     this.b = parseInt(source.substring(4), 16);
   },
-  hexToRgb (hexCode, opacity = null) {
+  hexToRgb(hexCode, opacity = null) {
     // 전달받은 헥사코드값과 알파값을 rgba 형식으로 반환한다
     this.rgb(hexCode);
 
     if(opacity !== null) {
-      if(opacity >= 0) {
-        opacity = opacity / 100;
-        return 'rgba('+ this.r +',' + this.g + ',' + this.b +',' + opacity + ')';
+      if(opacity < 1) {
+        console.log('d');
+        return `rgba(${this.r},${this.g},${this.b},${opacity})`;
       }else {
-        return 'rgba('+ this.r +',' + this.g + ',' + this.b +', 1)';
+        return `rgba(${this.r},${this.g},${this.b}, 1)`;
       }
     }else {
-      return 'rgb('+ this.r +',' + this.g + ',' + this.b +')';
+      return `rgb(${this.r},${this.g},${this.b})`;
     }
   },
   lighter (hexCode, opacity) {
@@ -57,3 +57,5 @@ export var colorAdjust = {
     return this.lighter(hexCode, opacity * -1);
   }
 };
+
+export default colorAdjust;

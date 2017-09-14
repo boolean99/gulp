@@ -1,12 +1,9 @@
-import {findSpecificStringInArry} from './find-specific-string-in-arry';
-
-export function parents(thisTarget, parentClassName) {
+export default function parents(thisTarget, parentClassName) {
   let _thisTarget = thisTarget,
-      catchTarget = findSpecificStringInArry(_thisTarget.className.split(' '), parentClassName);
+      catchTarget = _thisTarget.className.split(' ').find(elm => elm.startsWith('js-'));
   
-  while(catchTarget === null) {
+  while(!_thisTarget.className.split(' ').find(elm => elm.includes(parentClassName))) {
     _thisTarget = _thisTarget.parentElement;
-    catchTarget = findSpecificStringInArry(_thisTarget.className.split(' '), parentClassName);
   }
   
   return _thisTarget;

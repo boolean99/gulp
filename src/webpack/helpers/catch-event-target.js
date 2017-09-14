@@ -1,22 +1,17 @@
-import {findSpecificStringInArry} from './find-specific-string-in-arry';
-// 이벤트 버블링 캐치 함수
-
-export function eventTargetCatch(target) {
+export default function catchEventTarget(target) {
   let _target = target,
-      _targetClassNameArray = findSpecificStringInArry((_target.className.split(' ')), 'js-');
+      findJsString = _target.className.split(' ').find((item => item.startsWith('js-'))),
+      returnObj;
   
-  while(_targetClassNameArray === null) {
-    _target = _target.parentElement;
+  while(findJsString === undefined) {
+    if(_target.parentElement !== null) _target = _target.parentElement;
+    else break;
     
-    if(_target === null) break;
-    
-    _targetClassNameArray = findSpecificStringInArry((_target.className.split(' ')), 'js-');
+    findJsString = _target.className.split(' ').find((item => item.startsWith('js-')));
   }
   
-  let returnObj = {
-    elm : _target,
-    selector : _targetClassNameArray
+  return returnObj = {
+    target: _target,
+    findJsString
   };
-  
-  return returnObj;
 }

@@ -1,6 +1,6 @@
 // 객체를 복사한다
 
-export function cloneObj(obj) {
+export default function cloneObj(obj) {
   if (obj === null || !obj.constructor.toString().includes('Object')) return obj;
 
   let copyObj = obj.constructor();

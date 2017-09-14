@@ -24,7 +24,7 @@
     }
 
     @if $preview-fixed {
-      &.js-preview-hide {
+      &.js-preview--hide {
           &::before {
             color: red;
           }
@@ -59,7 +59,7 @@
         }
       }
     }@else {
-      &.js-preview-show {
+      &.js-preview--show {
         &::before {
             color: red;
         }

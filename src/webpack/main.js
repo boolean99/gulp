@@ -1,29 +1,30 @@
+// ES2015 사용을 위한 babel 모듈 호출
+//import 'babel-polyfill';
+
+// 전역 변수 객체 호출
+import globalConfig from './helpers/global-config';
+
 // npm 모듈 호출
 import mobileDetect from 'mobile-detect';
 
 // devTools 호출
-import {devTools} from './devtools/dev-tools';
-import {mirror} from './devtools/mirror';
-import {preview} from './devtools/preview';
+import devTools from './devtools/dev-tools';
+import mirror from './devtools/mirror';
+import preview from './devtools/preview';
 
 // 헬퍼 모듈 호출
-import {eventTargetCatch} from './helpers/catch-event-target';
-import {clipboardFunc} from './helpers/clipboard-function';
-import {cloneObj} from './helpers/clone-obj';
-import {colorAdjust} from './helpers/color-adjust';
-import {delayEvent} from './helpers/delay-event';
-import eventInfo from './helpers/event-info';
-import {findSpecificStringInArry} from './helpers/find-specific-string-in-arry';
-import {globalConfig} from './helpers/global-config';
-import {index} from './helpers/index';
-import {makeSelectorToArray} from './helpers/make-selector-to-arry';
-import {parents} from './helpers/parents';
-import {readingZero} from './helpers/reading-zero';
-import {scrollTop} from './helpers/smooth-scrolling';
-import {toggleBoolean} from './helpers/toggle-boolean';
+import catchEventTarget from './helpers/catch-event-target';/**/
+import clipboardFunc from './helpers/clipboard-function';
+import cloneObj from './helpers/clone-obj';
+import colorAdjust from './helpers/color-adjust';
+import delayEvent from './helpers/delay-event';
+import index from './helpers/index';
+import parents from './helpers/parents';
+import readingZero from './helpers/reading-zero';
+import scrollTop from './helpers/smooth-scrolling';
+import toggleBoolean from './helpers/toggle-boolean';
 import {toggleModifier} from './helpers/toggle-modifier';
-import {splitSearch} from '../../app_helpers/split-search';
-
+import splitSearch from '../../app_helpers/split-search';
 // 프로젝트 모듈 호출
 import {socketFunc} from './project/socket';
 import * as kbs from './project/kbs';
@@ -33,60 +34,57 @@ let socket;
 
 document.addEventListener('DOMContentLoaded', () => {
   // 돔 로드완료 이벤트
-  let win = window,
-      doc = document,
-      md = new mobileDetect(win.navigator.userAgent);
+  const WIN = window,
+        DOC = document,
+        MD = new mobileDetect(WIN.navigator.userAgent);
   
-  if(md.mobile()) console.log(`Mobile DOM's been loaded`);
+  if(MD.mobile()) console.log(`mobile DOM's been loaded`);
   else console.log(`DOM's been loaded`);
   
-  doc.addEventListener('click', (e) => {
-    // 클릭 이벤트 이벤트 버블링
-    let clickedTarget = e.target,
-        evtTargetElm = eventTargetCatch(clickedTarget).elm,
-        evtTargetSelector = eventTargetCatch(clickedTarget).selector;
-//console.log(clickedTarget.className.split(' ').find(item => item.startsWith('js-')));
-//    console.log(evtTargetElm, evtTargetSelector);
-    console.log(eventInfo(e));
-    switch(evtTargetSelector) {
-      case 'js-copy-link' :
-//        console.log(index(evtTargetElm));
+  DOC.addEventListener('click', (e) => {
+    // 클릭 이벤트 버블링
+    const eventTarget = catchEventTarget(e.target || e.srcElement);
+    
+//    console.log(eventTarget.target, eventTarget.findJsString);
+    
+    switch(eventTarget.findJsString) {
+      case 'js-dfdfd' :
+        console.log('clickEvt');
+        console.log(index(eventTarget.target));
         break;
       default :
         return false;
     }
   }, false);
   
-  doc.addEventListener('click', (e) => {
-    // 클릭 이벤트 이벤트 캡쳐링
-    let clickedTarget = e.target,
-        evtTargetElm = eventTargetCatch(clickedTarget).elm,
-        evtTargetSelector = eventTargetCatch(clickedTarget).selector;
+  DOC.addEventListener('click', (e) => {
+    // 클릭 이벤트 캡쳐링
+    const eventTarget = catchEventTarget(e.target || e.srcElement);
 
-    switch(evtTargetSelector) {
+    switch(eventTarget.findJsString) {
       case 'js-copy-link' :
-//        clipboardFunc(evtTargetSelector);
+//       clipboardFunc(eventTarget.findJsString);
         break;
       default :
         return false;
     }
   }, true);
   
-  win.addEventListener('load', () => {
+  WIN.addEventListener('load', () => {
     // 윈도우 로드완료 이벤트
-  if(md.mobile()) console.log(`Mobile WINDOW's been loaded`);
+  if(MD.mobile()) console.log(`mobile WINDOW's been loaded`);
   else console.log(`WINDOW's been loaded`);
 //    socket = io();
 //    socketFunc(socket);
   });
   
-  win.addEventListener('resize', () => {
+  WIN.addEventListener('resize', () => {
     // 윈도우 리사이즈 이벤트
 //    delayEvent(/*second*/, /*func*/);
   });
   
-  win.addEventListener('keypress', (e) => {
-    let pressedKeyCode = e.which;
+  WIN.addEventListener('keypress', (e) => {
+    const pressedKeyCode = e.which;
     
     switch(pressedKeyCode) {
       case 0:
@@ -97,14 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  doc.addEventListener('wheel', (e) => {
-    let scrolledElement = e.target,
-        evtTargetElm = eventTargetCatch(scrolledElement).elm,
-        evtTargetSelector = eventTargetCatch(scrolledElement).selector;
+  DOC.addEventListener('wheel', (e) => {
+    const eventTarget = catchEventTarget(e.target || e.srcElement);
     
-    switch(evtTargetSelector) {
-      case 'js-scroll2':
-        console.log(evtTargetElm);
+    switch(eventTarget.findJsString) {
+      case 'js-test':
+        console.log(eventTarget.target);
 //        goToTop(e, scrolledElement);
         break;
       default :
@@ -112,15 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, true);
   
-  doc.addEventListener('touchstart', (e) => {
+  DOC.addEventListener('touchstart', (e) => {
     let touchObj = e.changedTouches[0];
   });
   
-  doc.addEventListener('touchmove', (e) => {
+  DOC.addEventListener('touchmove', (e) => {
     let touchObj = e.changedTouches[0];
   });
   
-  doc.addEventListener('touchend', (e) => {
+  DOC.addEventListener('touchend', (e) => {
     let touchObj = e.changedTouches[0];
   });
 });
