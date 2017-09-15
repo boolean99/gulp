@@ -1,7 +1,7 @@
 (function() {
   const DOC = document;
   
-  DOC.body.insertAdjacentHTML('beforeend', `<aside id="preview" class="js-preview-hide"></aside><img src="">`);
+  DOC.body.insertAdjacentHTML('beforeend', `<aside id="preview" class="js-preview-hide"></aside><img src=" ">`);
   
   const target = document.getElementById('preview');
 

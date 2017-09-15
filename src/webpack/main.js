@@ -23,7 +23,7 @@ import parents from './helpers/parents';
 import readingZero from './helpers/reading-zero';
 import scrollTop from './helpers/smooth-scrolling';
 import toggleBoolean from './helpers/toggle-boolean';
-import {toggleModifier} from './helpers/toggle-modifier';
+import toggleModifier from './helpers/toggle-modifier';
 import splitSearch from '../../app_helpers/split-search';
 // 프로젝트 모듈 호출
 import {socketFunc} from './project/socket';
@@ -45,12 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 클릭 이벤트 버블링
     const eventTarget = catchEventTarget(e.target || e.srcElement);
     
-//    console.log(eventTarget.target, eventTarget.findJsString);
+    console.log(eventTarget.target, eventTarget.findJsString);
     
     switch(eventTarget.findJsString) {
-      case 'js-dfdfd' :
-        console.log('clickEvt');
-        console.log(index(eventTarget.target));
+      case 'js-clickable' :
+//        console.log(index(eventTarget.target));
+//        toggleModifier(
+//          eventTarget.target,
+//          'container__element--actived',
+//          ['container__element--theme-flat', 'container__element--theme-normal']
+//        );
         break;
       default :
         return false;
