@@ -10,7 +10,7 @@ export default function toggleModifier(target, ...arry) {
     
     for(let i = 0, len = arry.length; i < len; i++) {
       if(Array.isArray(arry[i])) {
-        // arry[i] 요소의 데이터 타입이 객체다
+        // arry[i] 요소의 데이터 타입이 배열이다
         // === name-value 형식의 modifier
         let targetModifier = '',
             incompatibleModifier;
@@ -41,15 +41,38 @@ export default function toggleModifier(target, ...arry) {
       }
     }
   }else {
-    // modifier가 하나만 전달됐을땐 find로 일치하는 modifier를 바로 찾아 문자열로 반환한다.
-    extractModifier = target.className.split(' ').find(elm => elm.includes(arry[0]));
-    
-    if(extractModifier !== undefined) {
-      // modifier가 있다면 제거한다
-      target.className = target.className.toString().replace(` ${extractModifier}`, '');
+    // modifier가 하나만 전달됐을때.
+    if(Array.isArray(arry[0])) {
+        // arry의 데이터 타입이 배열이다
+        // === name-value 형식의 modifier
+        let targetModifier = '',
+            incompatibleModifier;
+        
+        for(var h = 0, hlen = arry[0].length; h < hlen; h++) {
+          if(target.className.toString().includes(arry[0][h])) {
+            targetModifier = arry[0][h];
+            break;
+          }else {
+            continue;
+          }
+        }
+        
+        if(h) incompatibleModifier = arry[0][h - 1];
+        else incompatibleModifier = arry[0][h + 1];
+        console.log(targetModifier);
+        console.log(incompatibleModifier);
+        target.className = target.className.toString().replace(targetModifier, incompatibleModifier);
     }else {
-      // modifier가 없다면 추가한다
-      target.className = `${target.className.toString()} ${arry[0]}`;
+        // arry의 데이터 타입이 문자열이다
+      extractModifier = target.className.split(' ').find(elm => elm.includes(arry[0]));
+
+      if(extractModifier !== undefined) {
+        // modifier가 있다면 제거한다
+        target.className = target.className.toString().replace(` ${extractModifier}`, '');
+      }else {
+        // modifier가 없다면 추가한다
+        target.className = `${target.className.toString()} ${arry[0]}`;
+      }
     }
   }
 }
