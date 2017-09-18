@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     switch(eventTarget.findJsString) {
       case 'js-clickable' :
-//        console.log(index(eventTarget.target));
+        console.log(index(eventTarget.target));
 //        toggleModifier(
 //          eventTarget.target,
 //          'container__element--actived',
@@ -60,19 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
   }, false);
-  
-  DOC.addEventListener('click', (e) => {
-    // 클릭 이벤트 캡쳐링
-    const eventTarget = catchEventTarget(e.target || e.srcElement);
-
-    switch(eventTarget.findJsString) {
-      case 'js-copy-link' :
-//       clipboardFunc(eventTarget.findJsString);
-        break;
-      default :
-        return false;
-    }
-  }, true);
   
   WIN.addEventListener('load', () => {
     // 윈도우 로드완료 이벤트
