@@ -10,7 +10,6 @@ export default function toggleModifier(target, ...arry) {
   }
   
   for(let i = 0, iLen = _target.length; i < iLen; i++) {
-    console.log(_target[i]);
     for(let j = 0, jlen = arry.length; j < jlen; j++) {
       if(_target[i].className.includes(arry[j])) {
         // modifier가 존재한다 === true -> false
