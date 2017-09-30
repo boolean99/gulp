@@ -13,7 +13,7 @@ import mirror from './devtools/mirror';
 import preview from './devtools/preview';
 
 // 헬퍼 모듈 호출
-import catchEventTarget from './helpers/catch-event-target';/**/
+import catchEventTarget from './helpers/catch-event-target';
 import clipboardFunc from './helpers/clipboard-function';
 import cloneObj from './helpers/clone-obj';
 import colorAdjust from './helpers/color-adjust';
@@ -23,8 +23,9 @@ import parents from './helpers/parents';
 import readingZero from './helpers/reading-zero';
 import scrollTop from './helpers/smooth-scrolling';
 import toggleBoolean from './helpers/toggle-boolean';
-import toggleModifier from './helpers/toggle-modifier';
+import modifier from './helpers/modifier';
 import splitSearch from '../../app_helpers/split-search';
+
 // 프로젝트 모듈 호출
 import {socketFunc} from './project/socket';
 import * as kbs from './project/kbs';
@@ -48,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(eventTarget.target, eventTarget.findJsString);
     
     switch(eventTarget.findJsString) {
-      case 'js-clickable' :
+      case 'js-copy-link' :
         console.log(index(eventTarget.target));
-//        toggleModifier(
-//          eventTarget.target,
-//          'container__element--actived',
-//          ['container__element--theme-flat', 'container__element--theme-normal']
-//        );
+        modifier(
+          'toggle',
+          eventTarget.target,
+          'paging__elm--actived'
+        );
         break;
       default :
         return false;
