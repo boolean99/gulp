@@ -6,6 +6,9 @@ import globalConfig from './helpers/global-config';
 
 // npm 모듈 호출
 import mobileDetect from 'mobile-detect';
+//import scroll from 'scroll';
+//import ease from 'ease-component';
+//import detectScrollPageObj from 'scroll-doc';
 
 // devTools 호출
 import devTools from './devtools/dev-tools';
@@ -14,21 +17,20 @@ import preview from './devtools/preview';
 
 // 헬퍼 모듈 호출
 import catchEventTarget from './helpers/catch-event-target';
-import clipboardFunc from './helpers/clipboard-function';
-import cloneObj from './helpers/clone-obj';
-import colorAdjust from './helpers/color-adjust';
-import delayEvent from './helpers/delay-event';
+//import clipboardFunc from './helpers/clipboard-function';
+//import cloneObj from './helpers/clone-obj';
+//import colorAdjust from './helpers/color-adjust';
+//import delayEvent from './helpers/delay-event';
 import index from './helpers/index';
-import parents from './helpers/parents';
-import readingZero from './helpers/reading-zero';
-import scrollTop from './helpers/smooth-scrolling';
-import toggleBoolean from './helpers/toggle-boolean';
+//import parents from './helpers/parents';
+//import readingZero from './helpers/reading-zero';
+//import toggleBoolean from './helpers/toggle-boolean';
 import modifier from './helpers/modifier';
-import splitSearch from '../../app_helpers/split-search';
+//import splitSearch from '../../app_helpers/split-search';
 
 // 프로젝트 모듈 호출
-import {socketFunc} from './project/socket';
-import * as kbs from './project/kbs';
+//import {socketFunc} from './project/socket';
+//import * as kbs from './project/kbs';
 
 // 전역변수 선언
 let socket;
@@ -37,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 돔 로드완료 이벤트
   const WIN = window,
         DOC = document,
-        MD = new mobileDetect(WIN.navigator.userAgent);
+        MD = new mobileDetect(WIN.navigator.userAgent),
+        detectScrollPage = detectScrollPageObj();
   
   if(MD.mobile()) console.log(`mobile DOM's been loaded`);
   else console.log(`DOM's been loaded`);
@@ -51,6 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(eventTarget.findJsString) {
       case 'js-copy-link' :
         console.log(index(eventTarget.target));
+        scroll.top(
+          detectScrollPage,
+          1000,
+          {
+            duration: 1000,
+            ease: ease.inQuint
+          },
+          function (error, scrollLeft) {
+          }
+        );
         modifier(
           'toggle',
           eventTarget.target,
@@ -93,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(eventTarget.findJsString) {
       case 'js-test':
         console.log(eventTarget.target);
-//        goToTop(e, scrolledElement);
         break;
       default :
         return false;
