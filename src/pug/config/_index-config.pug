@@ -26,6 +26,9 @@ include _common-config
 - var twitterCard=			''
 //----------[*]- SNS META 태그 설정 -[*]----------\\
 
+//- body class 설정
+- var bodyClass = 'index'
+
 //- bottom 설정
 - var js= true
 
@@ -40,7 +43,8 @@ include _common-config
     [
       //'/socket.io/socket.io.js',
       //'/reload/reload.js',
-      'js/main.bundle.js'
+      'js/main.bundle.js',
+      ['js/test.js', 'async:true', 'defer:false']
     ]
 
 //- 배포시 수정될 파일명 & img 경로를 바꿔준다
