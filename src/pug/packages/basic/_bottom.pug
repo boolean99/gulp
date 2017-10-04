@@ -16,7 +16,7 @@ if js
       - var attributes = {}
       
       -for(var i = 0; i < key.length - 1; i++)
-        - attributes[key[i + 1].slice(0, key[i + 1].indexOf(':'))] = key[i + 1].slice(key[i + 1].indexOf(':') + 1)
+        - attributes[key[i + 1].slice(0, key[i + 1].indexOf(':'))] = key[i + 1].slice(key[i + 1].indexOf(':') + 1) == 'true' ? '' : key[i + 1].slice(key[i + 1].indexOf(':') + 1)
 
       
       script(src= key[0] id= key[0].slice(key[0].lastIndexOf('/') + 1, key[0].indexOf('.')))&attributes(attributes)
