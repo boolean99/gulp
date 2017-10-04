@@ -5,6 +5,7 @@ each key in jsFileName
     -for(var i = 0; i < key.length - 1; i++)
       - attributes[key[i + 1].slice(0, key[i + 1].indexOf(':'))] = key[i + 1].slice(key[i + 1].indexOf(':') + 1) == 'true' ? true : key[i + 1].slice(key[i + 1].indexOf(':') + 1)
 
+
     script(src= key[0] id= key[0].slice(key[0].lastIndexOf('/') + 1, key[0].indexOf('.')))&attributes(attributes)
   else
     script(src= key id= key.slice(key.lastIndexOf('/') + 1, key.indexOf('.')))
