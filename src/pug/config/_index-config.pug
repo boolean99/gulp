@@ -1,5 +1,6 @@
 //----------[*]- 전역 변수 호출 -[*]----------\\
 include _common-config
+include var/_index-var
 //----------[*]- 전역 변수 호출 -[*]----------\\
 
 //- head 설정
@@ -12,7 +13,7 @@ include _common-config
 
 //----------[*]- SNS META 태그 설정 -[*]----------\\
 //- facebook
-- var facebookAppId=        '513057942237381'
+- var facebookAppId=        ''
 - var facebookTitle=	 	title
 - var facebookUrl=			locationOrigin + pathname
 - var facebookImage=	 	`${locationOrigin}${pathname}/images/facebook_img.jpg`
@@ -28,9 +29,6 @@ include _common-config
 
 //- body class 설정
 - var bodyClass = 'index'
-
-//- bottom 설정
-- var js= true
 
 //- CSS & JS & IMG 파일 URL
 -
@@ -61,6 +59,6 @@ if DIST
         'js/main.bundle.js'
       ]
 
-//----------[*]- 템플릿, 믹스인 호출 파일 -[*]----------\\
+//----------[*]- 템플릿, 믹스인 호출, doctype 선 -[*]----------\\
 include ../packages/mixin/**/*
-include ../packages/basic/**/!(_bottom)*
+doctype html

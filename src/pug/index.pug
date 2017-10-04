@@ -1,3 +1,7 @@
 include config/_index-config
-include packages/partial/_content-index
-include packages/basic/_bottom
++b('no-js', { t: 'html' })(lang=docLang)
+  include packages/basic/_top
+  +b(bodyClass, { t: 'body' })
+    include packages/basic/_skip-navigation
+    include packages/partial/_content-index
+    include packages/basic/_bottom

@@ -6,11 +6,6 @@
 - var multilingual=        ['ar', 'ZH', 'En', 'FR', 'DE', 'ID', 'JA', 'KO', 'RU', 'ES', 'VI']
 - var docLang=             multilingual[7]
 - var viewportWidth=       ''
-- var conditionalComment=  false
-- var html5Shiv=           false
-- var respond=             false
-- var jquery=              false
-- var jqueryMinorIE=       false
 - var facebook=			   false
 - var twitter=			   false
 - var shortcutIcon=		   ''
@@ -44,8 +39,7 @@ if DIST
       }
     ]
     
-//----------[*]- 헬퍼형 함수, 서버 변수 호출 -[*]----------\\
+//----------[*]- 함수, 모듈 호출 -[*]----------\\
 //- https://github.com/werty1001/bempug
 include ../../../node_modules/bempug/index
-include _server-var
 include ../packages/func/**/*

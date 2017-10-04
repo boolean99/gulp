@@ -98,21 +98,6 @@ head
       'type' : 'image/x-icon',
       'href' : shortcutIcon
     })
-  //- IE8 HTML5 엘리먼트 인식
-  if html5Shiv
-    <!--[if lt IE 9]>
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js')
-    <![endif]-->
-  each key in cssFileName
-    link&attributes({
-      'rel': 'stylesheet',
-      'href': key
-    })
-  //- IE8 미디어쿼리 지원
-  if respond
-    <!--[if lt IE 9]>
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js')
-    <![endif]-->
   if fontawesome
     script(src="https://use.fontawesome.com/5e23f07cdd.js")
   if materialicon
@@ -120,4 +105,3 @@ head
   if inlineStyleSheet
     style
       include ../others/css/style.css
-+b(bodyClass, { t: 'body' })
