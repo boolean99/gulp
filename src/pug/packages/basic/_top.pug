@@ -102,6 +102,8 @@ head
     script(src="https://use.fontawesome.com/5e23f07cdd.js")
   if materialicon
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+  each key in cssFileName
+    link(href= key id= key.slice(key.lastIndexOf('/') + 1, key.indexOf('.')) rel="stylesheet")
   if inlineStyleSheet
     style
       include ../others/css/style.css

@@ -22,4 +22,5 @@
 @import "setting/**/*";
 
 // layout 모듈 호출
-@import "bem/**/*";
+@import "bem/*/!(m)*";
+@import "bem/**/m/*";

@@ -2,7 +2,8 @@
 
 //*** NPM PACKAGES ***\\
 
-// npm i --save clipboard ease-component express mobile-detect pug scroll scroll-doc socket.io && npm i --save-dev babel-register gulp-sass-glob pug-include-glob babel-preset-es2015 babel-polyfill babel-loader@6.4.1 gulp gulp-sourcemaps gulp-plumber merge-stream vinyl-buffer run-sequence gulp-if gulp-pug gulp-htmlmin gulp-sass gulp-postcss autoprefixer postcss-sorting gulp-cssnano gulp-group-css-media-queries gulp-webpack gulp-uglify gulp-imagemin gulp.spritesmith gulp-ttf2eot gulp-ttf2woff gulp-supervisor browser-sync path reload ansi-styles bempug
+//npm i --save express mobile-detect pug socket.io babel-preset-es2015 babel-register pug-include-glob npm i --save-dev clipboard ease-component scroll scroll-doc ansi-styles autoprefixer babel-core babel-loader@6.4.1 babel-polyfill bempug browser-sync gulp gulp-cssnano gulp-group-css-media-queries gulp-htmlmin gulp-if gulp-imagemin gulp-plumber gulp-postcss gulp-pug gulp-sass gulp-sass-glob gulp-sourcemaps gulp-supervisor gulp-ttf2eot gulp-ttf2woff gulp-uglify gulp-webpack gulp.spritesmith merge-stream path postcss-sorting pug-include-glob reload run-sequence vinyl-buffer webpack
+
 //*** NPM PACKAGES ***\\
 
 // CONFIG

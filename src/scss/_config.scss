@@ -54,7 +54,7 @@ $global-line-height:   16px;
 // -------------
 // input-base-style-reset
 // -------------
-$input-css-reset:              true; // input 엘리먼트에 대한 default css를 전체 초기화
+$input-css-reset:              false; // input 엘리먼트에 대한 default css를 전체 초기화
 $checkbox-radio-size:          20px;
 $checkbox-radio-checked-color: #000;
 $cross-browsing:               false;
