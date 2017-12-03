@@ -2,9 +2,10 @@
 
 //*** NPM PACKAGES ***\\
 
-//npm i --save express mobile-detect pug socket.io babel-preset-es2015 babel-register pug-include-glob npm i --save-dev clipboard ease-component scroll scroll-doc ansi-styles autoprefixer babel-core babel-loader@6.4.1 babel-polyfill bempug browser-sync gulp gulp-cssnano gulp-group-css-media-queries gulp-htmlmin gulp-if gulp-imagemin gulp-plumber gulp-postcss gulp-pug gulp-sass gulp-sass-glob gulp-sourcemaps gulp-supervisor gulp-ttf2eot gulp-ttf2woff gulp-uglify gulp-webpack gulp.spritesmith merge-stream path postcss-sorting pug-include-glob reload run-sequence vinyl-buffer webpack
+//npm i --save babel-loader babel-preset-env express mobile-detect pug pug-include-glob socket.io babel-register npm i --save-dev ansi-styles autoprefixer babel-polyfill bempug browser-sync clipboard ease-component gulp gulp-cssnano gulp-group-css-media-queries gulp-htmlmin gulp-if gulp-imagemin gulp-plumber gulp-postcss gulp-pug gulp-sass gulp-sass-glob gulp-sourcemaps gulp-supervisor gulp-ttf2eot gulp-ttf2woff gulp-uglify gulp.spritesmith merge-stream path postcss-sorting reload run-sequence scroll scroll-doc vinyl-buffer webpack webpack-stream 
 
 //*** NPM PACKAGES ***\\
+
 
 // CONFIG
 import GLOBALCONFIG from './config.json';
@@ -36,7 +37,7 @@ import combineMediaQuery from 'gulp-group-css-media-queries';
 import scssGlob from 'gulp-sass-glob';
 
 // JS
-import webpack from 'gulp-webpack';
+import webpack from 'webpack-stream';
 import uglifyJs from 'gulp-uglify';
 
 // IMG
@@ -127,24 +128,22 @@ gulp.task('css-strong', () => {
 //[*]+---------------[[ CSS 정리 ]]---------------+[*]\\
 
 //[*]+---------------[[ Webpack 컴파일 ]]---------------+[*]\\
+
 gulp.task('webpack-compile', () => {
   return gulp.src(GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.WEBPACK)
       .pipe(plumber())
-      .pipe(gulpIf(
-        GLOBALCONFIG.DISTRIBUTION,
-        webpack({
-          entry: {
-            [GLOBALCONFIG.WEBPACK.DISTFILENAME]: './' + GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.WEBPACK + `/${GLOBALCONFIG.WEBPACK.DISTFILENAME}.js`
-          },
-          devtool: 'source-map',
-          context: __dirname,
-          output: {
-            filename: '[name].bundle.js',
-            pathinfo: true
-          },
-          module: {
-            loaders: [{
-              test: /.jsx?$/,
+      .pipe(webpack({
+        entry: {
+          [GLOBALCONFIG.WEBPACK.FILENAME]: `./${GLOBALCONFIG.DIRECTION.SRC}${GLOBALCONFIG.DIRECTION.WEBPACK}/${GLOBALCONFIG.WEBPACK.FILENAME}.js`
+        },
+        devtool: 'source-map',
+        output: {
+          filename: '[name].bundle.js'
+        },
+        module: {
+          rules: [
+            {
+              test: /\.jsx?$/,
               loader: 'babel-loader',
               exclude: [
                 path.resolve(__dirname, '/node_modules/'),
@@ -152,44 +151,15 @@ gulp.task('webpack-compile', () => {
                 path.resolve(__dirname, '/dev/'),
                 path.resolve(__dirname, '/dist/'),
                 path.resolve(__dirname, '/public/')
-              ],
-              query: {
-                presets: ['es2015']
-              }
-            }]
-          },
-        }),
-        webpack({
-          entry: {
-            [GLOBALCONFIG.WEBPACK.FILENAME]: './' + GLOBALCONFIG.DIRECTION.SRC + GLOBALCONFIG.DIRECTION.WEBPACK + `/${GLOBALCONFIG.WEBPACK.FILENAME}.js`
-          },
-          devtool: 'source-map',
-          context: __dirname,
-          output: {
-            filename: '[name].bundle.js',
-            pathinfo: true
-          },
-          module: {
-            loaders: [{
-              test: /.jsx?$/,
-              loader: 'babel-loader',
-              exclude: [
-                path.resolve(__dirname, '/node_modules/'),
-                path.resolve(__dirname, '/reload-helper/'),
-                path.resolve(__dirname, '/dev/'),
-                path.resolve(__dirname, '/dist/'),
-                path.resolve(__dirname, '/public/')
-              ],
-              query: {
-                presets: ['es2015']
-              }
-            }]
-          },
-        })
-      ))
+              ]
+            }
+          ]
+        }
+      }))
       .pipe(gulp.dest(GLOBALCONFIG.DIRECTION.DEV + '/js'))
       .pipe(reload({stream: true}));
 });
+
 //[*]+---------------[[ Webpack 컴파일 ]]---------------+[*]\\
 
 //[*]+---------------[[ JS 압축 ]]---------------+[*]\\

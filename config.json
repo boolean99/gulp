@@ -18,8 +18,7 @@
     "DISTFILENAME": "dist_sprite.png"
   },
   "WEBPACK": {
-    "FILENAME": "main",
-    "DISTFILENAME": "dist_javascript"
+    "FILENAME": "main"
   },
   "RESTART": {
     "GULPFILE": "./gulpfile.babel.js",

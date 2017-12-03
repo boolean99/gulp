@@ -1,5 +1,5 @@
 // ES2015 사용을 위한 babel 모듈 호출
-//import 'babel-polyfill';
+import 'babel-polyfill';
 
 // 전역 변수 객체 호출
 import globalConfig from './helpers/global-config';
@@ -8,7 +8,7 @@ import globalConfig from './helpers/global-config';
 import mobileDetect from 'mobile-detect';
 //import scroll from 'scroll';
 //import ease from 'ease-component';
-//import detectScrollPageObj from 'scroll-doc';
+import detectScrollPageObj from 'scroll-doc';
 
 // devTools 호출
 import devTools from './devtools/dev-tools';
